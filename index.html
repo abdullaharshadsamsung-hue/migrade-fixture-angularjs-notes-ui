@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" ng-app="notesApp">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-controller="NotesController as vm">
+    <main>
+      <h1>Notes</h1>
+      <form ng-submit="vm.add()"><input ng-model="vm.title" placeholder="New note" /><button type="submit">Add</button></form>
+      <ul>
+        <li ng-repeat="note in vm.notes track by note.id">
+          <strong>{{ note.title }}</strong> <span ng-if="note.body">— {{ note.body }}</span>
+          <button ng-click="vm.remove(note.id)">Delete</button>
+        </li>
+      </ul>
+      <p>{{ vm.notes.length }} notes</p>
+    </main>
+  </body>
+</html>
